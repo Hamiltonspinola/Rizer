@@ -15,7 +15,7 @@ class CreateVendedorsTable extends Migration
     {
         Schema::create('vendedors', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('chamados_id');
+            $table->unsignedBigInteger('chamados_id');            
             $table->string('nome');
             $table->string('email');
             $table->string('telefone');
@@ -24,10 +24,12 @@ class CreateVendedorsTable extends Migration
             $table->integer('qtd_chamados_andamento');
             $table->integer('qtd_chamados_resolvido');
             $table->timestamps();
-        });
-        Schema::table('vendedors', function(Blueprint $table){
+
             $table->foreign('chamados_id')->references('id')->on('chamados');
         });
+        // Schema::table('vendedors', function(Blueprint $table){
+        //     $table->foreign('chamados_id')->references('id')->on('chamados');
+        // });
     }
 
     /**

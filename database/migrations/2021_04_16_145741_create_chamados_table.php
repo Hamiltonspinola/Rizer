@@ -15,16 +15,18 @@ class CreateChamadosTable extends Migration
     {
          Schema::create('chamados', function (Blueprint $table) {
              $table->id();
-             $table->unsignedBigInteger('vendedor_id');
+             $table->unsignedBigInteger('vendedor_id');             
              $table->text('assunto');
              $table->longText('descricao');
              $table->date('data_criacao_chamado');
              $table->enum('status', ['aberto', 'andamento', 'resolvido', 'atrasado']);
-             $table->timestamps();            
+             $table->timestamps();
+             
+             $table->foreign('vendedor_id')->references('id')->on('vendedors');
         });
-          Schema::table('chamados', function(Blueprint $table){
-              $table->foreign('vendedor_id')->references('id')->on('vendedors');
-          });
+        //   Schema::table('chamados', function(Blueprint $table){
+        //       $table->foreign('vendedor_id')->references('id')->on('vendedors');
+        //   });
     }
 
     /**
